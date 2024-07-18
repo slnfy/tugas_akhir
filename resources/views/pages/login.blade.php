@@ -1,151 +1,102 @@
+<!--
+=========================================================
+* Argon Dashboard 2 - v2.0.4
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
-  <title>MOLEC PODI</title>
-  <!-- Favicon -->
-  <link rel="icon" href="{{ asset('assets/img/brand/favicon.png') }}" type="image/png">
-  <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <!-- Icons -->
-  <link rel="stylesheet" href="{{ asset('assets/vendor/nucleo/css/nucleo.css') }}" type="text/css">
-  <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" type="text/css">
-  <!-- Argon CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/argon.css?v=1.1.0') }}" type="text/css">
-  {{-- google recaptcha v2 --}}
-  <script src='https://www.google.com/recaptcha/api.js'></script>
-  {{-- google font --}}
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap" rel="stylesheet">
-  <style>
-    body{
-      font-family: 'Lexend Deca', sans-serif !important;
-    }
-    .bg-image{
-      background-image: url("{{ asset('img/bg-splash.jpg') }}");
-      /* background-size: 100% 100%; */
-      background-size: contain;
-    }
-    
-    .login-card {
-      /* background-color: rgba(255, 0, 0, 0.2); */
-    }
-  </style>
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="{{ asset('img/favicon1.jpeg') }}">
+  <title>
+    Archive App
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{{ asset('assets/css/nucleo-icons.css') }}" rel="stylesheet" />
+  <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{{ asset('assets/css/nucleo-svg.css') }}" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{{ asset('assets/css/argon-dashboard.css?v=2.0.4') }}" rel="stylesheet" />
 </head>
 
-<body class="bg-secondary bg-image">
-  <!-- Main content -->
-  <div class="main-content">
-    <!-- Header -->
-    <!-- <div class="header py-6">
-      <div class="container">
-        <div class="header-body text-center mb-7">
-          <div class="row justify-content-center">
-            <div class="col-xl-5 col-lg-6 col-md-8 px-5">
-            {{-- <h1 class="text-white">Welcome!</h1> --}}
-            </div>
-          </div>
-        </div>
-        <div class="separator separator-bottom separator-skew zindex-100">
-          <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <polygon class="fill-secondary" points="2560 0 2560 100 0 100"></polygon>
-          </svg>
-        </div>
-      </div>
-    </div> -->
-    
-    <!-- Page content -->
-    <div class="container-fluid">
-      <div class="row justify-content-end" style="flex-wrap: wrap;flex-direction: column;align-items: center;">
-        <div class="col p-5 rounded " style="margin-top:5rem;background-color:rgba(255, 255, 255, 0.5);width:fit-content;margin-right: 3rem;margin-left: 3rem">
-          <div class="login-card">
-                    <div>
-                        <div class="login-main">
-                        <form role="form" method="post" action="">
-                          {{ csrf_field() }}
-                                <div class="logo text-center">
-                                    <img src="{{ asset('img/Logo_login_podi.png')}}" width="15%">
-                                    <div style="font-size: 1.5rem">Collector</div></div> 
-                                <hr>
-                                <h4>Sign in to account</h4>
-                                <p>Enter your username & password to login</p>
-                                @if(session('error'))
-                                  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{session('error')}}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  @endif
-                                  @error('login_failed')
-                                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <span class="alert-inner--text"><strong>Warning!</strong> {{ $message }}</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  @enderror
-                                <div class="form-group">
-                                    <label class="col-form-label">Username</label>
-                                    <input class="form-control" name="username" placeholder="Username" type="text">
-                                    @if($errors->has('username'))
-                                      <span class="text-danger text-sm">{{ $errors->first('username') }}</span>
-                                      @endif
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">Password</label>
-                                    <div class="form-input position-relative">
-                                    <input class="form-control" name="password" placeholder="Password" type="password">
-                                    @if($errors->has('password'))
-                                      <span class="text-danger text-sm">{{ $errors->first('password') }}</span>
-                                      @endif
-                                        </div>
-                                    </div>
-                                </div>
-                                    <button class="btn btn-block w-100" type="submit" style="background: #252524; color: aliceblue" id="btn-submit">Log in</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+<body class="">
+  <main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+              <div class="card card-plain">
+                <div class="card-header pb-0 text-start">
+                  <h4 class="font-weight-bolder">Masuk</h4>
+                  <p class="mb-0">Masukan username dan password untuk masuk</p>
                 </div>
+                <div class="card-body">
+                  <form role="form">
+                    <div class="mb-3">
+                      <input type="email" class="form-control form-control-lg" placeholder="Username" aria-label="Email">
+                    </div>
+                    <div class="mb-3">
+                      <input type="email" class="form-control form-control-lg" placeholder="Password" aria-label="Password">
+                    </div>
+                    {{-- <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="rememberMe">
+                      <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div> --}}
+                    <div class="text-center">
+                      <button type="button" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-        </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Footer -->
-  {{-- <footer class="py-5" id="footer-main">
-    <div class="container">
-      <div class="row align-items-center justify-content-xl-between">
-        <div class="col-xl-6">
-        <div class="copyright text-center text-lg-left text-muted">
-          &copy; {{ date('Y') }} <a href="#" class="font-weight-bold ml-1" target="_blank"> Ari Ardiansyah</a>
-        </div>
-        </div>
-        <div class="col-xl-6">
-          <div class="copyright text-center text-lg-right text-muted">
-            Template by Creative Tim
+            <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
+              <div class="position-relative bg-gradient-dark h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('img/bg-splash.jpg');
+          background-size: cover;">
+                <span class="mask bg-gradient-dark opacity-6"></span>
+                <h4 class="mt-5 text-white font-weight-bolder position-relative">"Archive App"</h4>
+                <p class="text-white position-relative">Aplikasi Pengelola Kearsipan Menggunakan Sistem Subjek</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </footer> --}}
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/js-cookie/js.cookie.js') }}"></script>
-  <script src="{{ asset('assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js') }}"></script>
-  <!-- Argon JS -->
-  <script src="{{ asset('assets/js/argon.js?v=1.1.0') }}"></script>
-  <!-- Demo JS - remove this in your project -->
-  {{-- <script src="{{ asset('assets/js/demo.min.js') }}"></script> --}}
+    </section>
+  </main>
+  <!--   Core JS Files   -->
+  <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ asset('assets/js/argon-dashboard.min.js?v=2.0.4') }}"></script>
 </body>
 
 </html>

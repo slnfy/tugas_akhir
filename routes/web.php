@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PenyimpananController;
+use App\Http\Middleware\AuthMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +18,14 @@ use App\Http\Controllers\PenyimpananController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 
-Route::get('/login', function () {
-    return 'Seli cantik';
+Route::get('/login', [UserController::class, 'login'])->name('user.login');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::group([AuthMiddleware::class], function () {
+    Route::resources(['user' => UserController::class]);
+    Route::resources(['penyimpanan' => PenyimpananController::class]);
 });
-
-Route::resources(['user' => UserController::class]);
-Route::resources(['penyimpanan' => PenyimpananController::class]);
-
